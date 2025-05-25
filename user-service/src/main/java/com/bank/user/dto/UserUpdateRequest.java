@@ -1,7 +1,6 @@
 package com.bank.user.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,18 +11,17 @@ import lombok.NoArgsConstructor;
  * 사용자 정보 수정 요청 DTO
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UserUpdateRequest {
-    
+
     @Email(message = "올바른 이메일 형식이 아닙니다")
     private String email;
-    
-    @Size(min = 2, max = 100, message = "이름은 2-100자 사이여야 합니다")
+
+    @Size(max = 100, message = "이름은 100자를 초과할 수 없습니다")
     private String fullName;
-    
-    @Pattern(regexp = "^01[0-9]-[0-9]{3,4}-[0-9]{4}$", 
-             message = "전화번호 형식이 올바르지 않습니다 (예: 010-1234-5678)")
+
+    @Size(max = 20, message = "전화번호는 20자를 초과할 수 없습니다")
     private String phoneNumber;
 }

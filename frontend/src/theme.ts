@@ -31,10 +31,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
-      'Roboto',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
@@ -79,15 +79,14 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         },
       },
     },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
-        },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+        fullWidth: true,
       },
     },
   },

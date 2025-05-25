@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * User Service Application
- * 사용자 정보 관리 마이크로서비스
+ * 사용자 관리 마이크로서비스
  */
 @SpringBootApplication
 @EnableDiscoveryClient

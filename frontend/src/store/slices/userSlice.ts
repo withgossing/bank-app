@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface UserState {
-  // User related state
+  // User 관련 상태
 }
 
 const initialState: UserState = {};

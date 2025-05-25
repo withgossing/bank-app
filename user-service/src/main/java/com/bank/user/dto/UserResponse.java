@@ -9,24 +9,24 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
- * 사용자 정보 응답 DTO
+ * 사용자 응답 DTO
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UserResponse {
-    
+
     private Long id;
     private String username;
     private String email;
     private String fullName;
     private String phoneNumber;
-    private String role;
-    private Boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    
+    private boolean isActive;
+    private String role;
+
     public static UserResponse from(User user) {
         return UserResponse.builder()
                 .id(user.getId())
@@ -34,10 +34,10 @@ public class UserResponse {
                 .email(user.getEmail())
                 .fullName(user.getFullName())
                 .phoneNumber(user.getPhoneNumber())
-                .role(user.getRole().name())
-                .isActive(user.getIsActive())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
+                .isActive(user.isActive())
+                .role(user.getRole().name())
                 .build();
     }
 }

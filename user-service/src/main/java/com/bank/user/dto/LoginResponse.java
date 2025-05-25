@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
  * 로그인 응답 DTO
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class LoginResponse {
     
     private String accessToken;
     private String refreshToken;
-    private String tokenType = "Bearer";
+    private String tokenType;
     private Long expiresIn;
-    private UserResponse user;
+    private UserDto user;
 }

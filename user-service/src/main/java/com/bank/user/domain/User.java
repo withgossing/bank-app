@@ -1,4 +1,4 @@
-package com.bank.user.entity;
+package com.bank.user.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,29 +37,28 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "full_name", nullable = false, length = 100)
     private String fullName;
 
-    @Column(length = 20)
+    @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(nullable = false)
-    private boolean isActive = true;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role = Role.USER;
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
+        if (isActive == null) {
+            isActive = true;
+        }
     }
 
     @PreUpdate
@@ -67,9 +66,10 @@ public class User implements UserDetails {
         updatedAt = LocalDateTime.now();
     }
 
+    // UserDetails 인터페이스 구현
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -90,9 +90,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
-    }
-
-    public enum Role {
-        USER, ADMIN
     }
 }
